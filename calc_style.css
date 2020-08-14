@@ -1,0 +1,77 @@
+body {
+    font-size: large;
+    position: fixed;
+    top: 15%;
+    left: 40%;
+    background-color: black;
+
+}
+
+h1 {
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 45%;
+}
+
+.box {
+    text-align:center;
+    width:250px;
+    height: 20px;
+    padding: 1em;
+    border: 2px solid yellow;
+    font-family:"Courier New";
+    color: white;
+    background-color: black;
+}
+
+button {
+    width:4.5em;
+    height: 4.5em;
+    font-weight:bold;
+    font-size: 16px;
+    color: white;
+    background-color: #666666;
+    border-radius: 50%;
+    border: 1px solid #333333;
+}
+
+button:hover {
+    background-color: #999999;
+}
+
+.operator {
+    background-color: #e68a00;
+}
+
+.operator:hover {
+    background-color: #ffd11a;
+}
+
+.indent button{
+    width: 1250%;
+    border-radius: 50%;
+}
+
+.indent button:hover {
+    background-color: #ffd11a;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #666666;
+    text-align: center;
+}
+
+a:link {
+    color:white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+}
+
