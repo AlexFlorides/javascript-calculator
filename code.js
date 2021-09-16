@@ -115,7 +115,6 @@ function button_number(button) {
         }
     }
 
-    console.log(numbers, operator_value)
 }
 
 // function to calculate the result using two number and an operator
