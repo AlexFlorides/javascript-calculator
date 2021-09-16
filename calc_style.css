@@ -1,27 +1,38 @@
 body {
     font-size: large;
-    position: fixed;
     top: 15%;
     left: 40%;
+    margin: 0 auto;
     background-color: black;
-
+    font-family: 'Roboto', sans-serif;
 }
 
 h1 {
     color: white;
-    position: fixed;
-    top: 0;
-    left: 45%;
+    text-align: center;
+}
+
+#calculator {
+    width: auto;
+    height: auto;
+    padding: 10px;
+    border: 5px solid #666666;
+    border-radius: 15px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .box {
-    text-align:center;
-    width:250px;
+    text-align:right;
     height: 20px;
     padding: 1em;
-    border: 2px solid yellow;
-    font-family:"Courier New";
+    border: 2px solid #e68a00;
     color: white;
+    border-radius: 15px;
     background-color: black;
 }
 
@@ -49,8 +60,8 @@ button:hover {
 }
 
 .indent button{
-    width: 1250%;
-    border-radius: 50%;
+    width: 1275%;
+    border-radius: 15px;
 }
 
 .indent button:hover {
