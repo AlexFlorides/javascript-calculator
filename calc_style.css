@@ -59,13 +59,9 @@ button:hover {
     background-color: #ffd11a;
 }
 
-.indent button{
-    width: 1275%;
+#equal_sign {
+    width: 100%;
     border-radius: 15px;
-}
-
-.indent button:hover {
-    background-color: #ffd11a;
 }
 
 .footer {
