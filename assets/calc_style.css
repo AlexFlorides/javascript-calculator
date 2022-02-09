@@ -60,7 +60,7 @@ button {
 }
 
 #backspace_btn {
-    background-image: url(back_remove.png);
+    background-image: url("../assets/back_remove.png");
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-size: 1.7em;
