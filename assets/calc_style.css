@@ -21,7 +21,7 @@ h1 {
     border-radius: 15px;
     margin: 0;
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -82,22 +82,3 @@ button:hover {
     width: 100%;
     border-radius: 15px;
 }
-
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #666666;
-    text-align: center;
-}
-
-a:link {
-    color:white;
-    text-decoration: none;
-}
-
-a:hover {
-    color: black;
-}
-
