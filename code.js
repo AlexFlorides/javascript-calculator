@@ -402,6 +402,10 @@ function keyPressed(e) {
 
 // function to capture keyup events
 function keyReleased(e) {
+    if (key_combination['ControlLeft'] && key_combination['KeyC']) {
+        box = document.getElementById("box");
+        navigator.clipboard.writeText( box.innerText)
+    }
     if (key_combination['ControlLeft'] && key_combination['KeyV']) {
         navigator.clipboard.readText().then(text => {
             box = document.getElementById("box");
