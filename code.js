@@ -405,15 +405,11 @@ function keyReleased(e){
     if (key_combination['ControlLeft'] && key_combination['KeyV']) {
         navigator.clipboard.readText().then(text => {
             box = document.getElementById("box");
-            var isNumber = isFinite(parseInt(text));
+            var isNumber = isFinite(text);
             if (isNumber){
-                var copy_number = parseInt(text)
-                box.innerText = copy_number
-                numbers.push(copy_number)
-            }
-            else{
-                box.innerText = 0
-                numbers.push(0)
+                var copy_number = text
+                firstNum = true
+                button_number(copy_number)
             }
         }).catch(err => {
             console.error('Failed to read clipboard contents: ', err);
