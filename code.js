@@ -15,6 +15,7 @@ var calc_operator;
 
 var total;
 
+var key_combination = []
 function button_number(button) {
 
     operator = document.getElementsByClassName("operator");
@@ -394,10 +395,31 @@ function keyPressed(e) {
             button_number(e.key) 
         }   
     }
+    if (e.key) {
+        key_combination[e.code] = e.key;
+    }
 }
 
 // function to capture keyup events
 function keyReleased(e){
+    if (key_combination['ControlLeft'] && key_combination['KeyV']) {
+        navigator.clipboard.readText().then(text => {
+            box = document.getElementById("box");
+            var isNumber = isFinite(text);
+            if (isNumber){
+                var copy_number = text
+                firstNum = true
+                button_number(copy_number)
+            }
+        }).catch(err => {
+            console.error('Failed to read clipboard contents: ', err);
+        });
+    }
+    if (key_combination['ControlLeft'] && key_combination['KeyC']) {
+        box = document.getElementById("box");
+        navigator.clipboard.writeText( box.innerText)
+    }
+    key_combination = []
     e.preventDefault()
     // set the color of the backspace button back to its original
     if (e.key == "Backspace"){
