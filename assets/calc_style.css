@@ -68,6 +68,7 @@ button {
 
 button:hover {
     background-color: #999999;
+    cursor: pointer;
 }
 
 .operator {
