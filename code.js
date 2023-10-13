@@ -318,18 +318,27 @@ function calculate_percentage(){
     box = document.getElementById("box");
 
     if (numbers.length > 0 && typeof last_operator != "undefined"){
-        if (last_operator == "+" || last_operator == "-"){
-            box.innerText = numbers*box.innerText/100
+
+        var perc_value = ((box.innerText / 100) * numbers[0])
+        if (!Number.isInteger(perc_value)) {
+            perc_value = perc_value.toFixed(2);
         }
-        else {
-            box.innerText = box.innerText/100
+        box.innerText = perc_value
+        numbers.push(box.innerText)
+    
+        // append second number to history
+        if (!last_operation_history.innerText.includes("=")){
+            last_operation_history.innerText += " " + numbers[1] + " ="
         }
     }
     else {
         box.innerText = box.innerText/100
     }
-    numbers = []
+
     numbers.push(box.innerText)
+    var res = calculate(numbers[0], numbers[1], last_operator)
+    box.innerText = res
+    operator_value = "="
 
     // deselect operator if any selected
     for (var i=0; i<elements.length; i++){
