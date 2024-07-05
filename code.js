@@ -17,150 +17,70 @@ var total;
 
 var key_combination = []
 function button_number(button) {
+    const operators = ["+", "-", "*", "/"];
+    const operatorButtons = document.getElementsByClassName("operator");
+    const box = document.getElementById("box");
+    const lastOperationHistory = document.getElementById("last_operation_history");
+    const equal = document.getElementById("equal_sign").value;
+    const dot = document.getElementById("dot").value;
 
-    operator = document.getElementsByClassName("operator");
-    box = document.getElementById("box");
-    last_operation_history = document.getElementById("last_operation_history");
-    equal = document.getElementById("equal_sign").value;
-    dot = document.getElementById("dot").value;
+    let lastButton = button;
+    let isOperator = operators.includes(button);
     
-    last_button = button;
-
-    // if button is not an operator or = sign
-    if (!operators.includes(button) && button!=equal){
-        // if it is the first button clicked
-        if (firstNum){
-            // and it's a dot, show 0.
-            if (button == dot){
-                box.innerText = "0"+dot;
-            }
-            // else clear box and show the number
-            else {
+    if (!isOperator && button !== equal) {
+        if (firstNum) {
+            box.innerText = button === dot ? "0" + dot : button;
+            firstNum = false;
+        } else {
+            if (box.innerText === "0" && button !== dot) {
                 box.innerText = button;
-            }
-            firstNum = false;
-        }
-        else {
-
-            // return if the box value is 0
-            if (box.innerText.length == 1 && box.innerText == 0){
-
-                if (button == dot){
-                    box.innerText += button;
-                }
-                return;
-            }
-            // return if the box already has a dot and clicked button is a dot
-            if (box.innerText.includes(dot) && button == dot){
-                return;
-            }
-            // maximum allowed numbers inputted are 20
-            if (box.innerText.length == 20){
-                return;
-            }
-
-            // if pressed dot and box already has a - sign, show -0.
-            if (button == dot && box.innerText == "-"){
-                box.innerText = "-0"+dot;
-            }
-            // else append number
-            else {
+            } else if (!(box.innerText.includes(dot) && button === dot) && box.innerText.length < 20) {
                 box.innerText += button;
-            }  
+            }
         }
-    }
-    // if it's an operator or = sign
-    else {
-
-        // return if operator is already pressed
-        if (operator_value != null && button == operator_value){
-            return
-        }
-
-        // show minus sign if it's the first value selected and finally return
-        if (button == "-" && box.innerText == 0){
-            box.innerText = button;
+    } else {
+        if (button === "-" && box.innerText === "0") {
+            box.innerText = "-";
             firstNum = false;
-            operator_value = button
-            showSelectedOperator()
+            operator_value = button;
+            showSelectedOperator();
             return;
         }
-        // return if minus operator pressed and it's already printed on screen 
-        else if (operators.includes(button) && box.innerText == "-"){
-            return
-        }
-        // return if minus operator pressed and history already has equal sign
-        else if (button == "-" && operator_value == "-" && last_operation_history.innerText.includes("=")){
-            return
-        }
-
-        // set value of operator if it's one
-        if (operators.includes(button)){
-            if (typeof last_operator != "undefined" && last_operator != null){
-                calc_operator = last_operator
+        
+        if (operator_value !== button) {
+            if (isOperator) {
+                calc_operator = last_operator || button;
+                last_operator = button === "*" ? "×" : button === "/" ? "÷" : button;
+                operator_value = button;
+                firstNum = true;
+                showSelectedOperator();
             }
-            else {
-                calc_operator = button
-            }
-            if (button == "*"){
-                last_operator = "×"
-            }
-            else if (button == "/"){
-                last_operator = "÷"
-            }
-            else {
-                last_operator = button
-            }
-            operator_value = button
-            firstNum = true
-            showSelectedOperator()
-        }
-
-        // add first number to numbers array and show it on history
-        if (numbers.length == 0){
-            numbers.push(box.innerText)
-            if (typeof last_operator != "undefined" && last_operator != null){
-                last_operation_history.innerText = box.innerText + " " + last_operator
-            }
-        }
-        // rest of calculations
-        else {   
-            if (numbers.length == 1){
-                numbers[1] = box.innerText
-            }
-            var temp_num = box.innerText
-
-            // calculate total
-            if (button==equal && calc_operator != null){
-                var total = calculate(numbers[0], numbers[1], calc_operator)
-                box.innerText = total;
-
-                // append second number to history
-                if (!last_operation_history.innerText.includes("=")){
-                    last_operation_history.innerText += " " + numbers[1] + " ="
+            
+            if (numbers.length === 0) {
+                numbers.push(box.innerText);
+                if (last_operator) {
+                    lastOperationHistory.innerText = box.innerText + " " + last_operator;
                 }
-
-                temp_num = numbers[0]
-
-                numbers[0] = total
-                operator_value = null
-                showSelectedOperator()
-
-                // replace first number of history with the value of total
-                var history_arr = last_operation_history.innerText.split(" ")
-                history_arr[0] = temp_num
-                last_operation_history.innerText = history_arr.join(" ")
-            }
-            // update history with the value on screen and the pressed operator
-            else if (calc_operator != null) {
-                 last_operation_history.innerText = temp_num + " " + last_operator
-                 calc_operator = button
-                 numbers = []
-                 numbers.push(box.innerText)
+            } else {
+                numbers[1] = box.innerText;
+                if (button === equal && calc_operator) {
+                    const total = calculate(numbers[0], numbers[1], calc_operator);
+                    box.innerText = total;
+                    if (!lastOperationHistory.innerText.includes("=")) {
+                        lastOperationHistory.innerText += " " + numbers[1] + " =";
+                    }
+                    numbers[0] = total;
+                    operator_value = null;
+                    showSelectedOperator();
+                    lastOperationHistory.innerText = lastOperationHistory.innerText.replace(numbers[0], total);
+                } else if (calc_operator) {
+                    lastOperationHistory.innerText = box.innerText + " " + last_operator;
+                    calc_operator = button;
+                    numbers = [box.innerText];
+                }
             }
         }
     }
-
 }
  // highlight operator button when selected
 function showSelectedOperator(){
