@@ -432,6 +432,6 @@ function keyReleased(e){
     e.preventDefault()
     // set the color of the backspace button back to its original
     if (e.key == "Backspace"){
-        document.getElementById("backspace_btn").style.backgroundColor  = "#666666";
+        document.getElementById("backspace_btn").style.backgroundColor  = "#999999";
     }
 }
