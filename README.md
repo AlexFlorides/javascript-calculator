@@ -1,6 +1,8 @@
-# Javascript Calculator
+# Javascript Calculator 
 
-A simple calculator built using vanilla HTML, CSS and JavaScript.
+Live link - https://roast-calculator.pages.dev
+
+A simple calculator that roast for simple calculation 
 
 ## Controls / Functionality
 
@@ -13,9 +15,6 @@ A simple calculator built using vanilla HTML, CSS and JavaScript.
 - By keep pressing the equal operator will recalculate result based on the last operation.
 
 - Last operation will show up above the input box every time any of the operators is selected.
-## Contributions
 
-- Feel free to suggest any improvements by creating an issue.
-
-- You can also work on an already open issue and pull request when finished, so I can review the changes and eventually merge them to the base branch.
+# Fun Project 
 
